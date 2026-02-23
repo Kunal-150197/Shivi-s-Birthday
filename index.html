@@ -107,7 +107,7 @@
 
 <body>
 
-<audio autoplay loop>
+<audio id="bgmusic" loop>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -122,9 +122,9 @@
     <div class="section">
         <h2>My Mote 💖</h2>
         <p>
-            You are Passion.<br>
-            You are Courage.<br>
-            You are Adventure.<br>
+            You are Passionate.<br>
+            You are Courageous.<br>
+            You are Adventurous.<br>
             You are Emotion.<br>
             You are my everything.
         </p>
@@ -169,9 +169,11 @@
 
 </div>
 
-<script>
-
 function startStory() {
+
+    // Start music after user click (required for iPad)
+    document.getElementById("bgmusic").play();
+
     window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
 
     const sections = document.querySelectorAll('.section');

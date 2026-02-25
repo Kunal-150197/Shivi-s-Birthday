@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Shivi ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: black;
+    overflow-x: hidden;
+    color: white;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #000000, #1a001a);
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 36px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    background: hotpink;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.slideshow {
+    display: none;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    background: radial-gradient(circle at center, #1a001a, black);
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    display: flex;
+    opacity: 1;
+}
+
+.slide img {
+    max-height: 80vh;
+    max-width: 90%;
+    object-fit: contain;
+    border-radius: 25px;
+    box-shadow: 0 0 50px rgba(255, 105, 180, 0.6);
+}
+
+.quote {
+    margin-top: 25px;
+    font-size: 22px;
+    text-align: center;
+    padding: 0 30px;
+    color: #ffb6e6;
+    text-shadow: 2px 2px 12px black;
+}
+
+.final-message {
+    font-size: 24px;
+    text-align: center;
+    padding: 40px;
+    color: #ff99dd;
+}
+
+.hearts-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    font-size: 24px;
+    color: #ff69b4;
+    animation: floatUp 5s linear forwards;
+    opacity: 0.8;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 0.8; }
+    100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+}
+
+.videos-section {
+    display: none;
+    padding: 60px 0;
+    text-align: center;
+    background: black;
+}
+
+.videos-section h2 {
+    color: hotpink;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.videos-section video {
+    max-width: 90%;
+    margin: 25px 0;
+    border: 3px solid hotpink;
+    border-radius: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero" id="startScreen">
+    <h1>Happy Birthday Shivi ❤️</h1>
+    <p>Passion. Courage. Adventurous. Emotional.</p>
+    <button onclick="startStory()">Enter If You Love Me 💕</button>
+</div>
+
+<audio id="bgmusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="slideshow" id="slideshow">
+
+    <div class="slide">
+        <img src="photo1.jpg">
+        <div class="quote">The day I met you, my world changed forever.</div>
+    </div>
+
+    <div class="slide">
+        <img src="photo2.jpg">
+        <div class="quote">Your smile is my favorite sunrise.</div>
+    </div>
+
+    <div class="slide">
+        <img src="photo3.jpg">
+        <div class="quote">Our first trip to Mussoorie & Landour ❤️</div>
+    </div>
+
+    <div class="slide">
+        <img src="photo4.jpg">
+        <div class="quote">Mountains were beautiful, but you were breathtaking.</div>
+    </div>
+
+    <div class="slide">
+        <img src="photo5.jpg">
+        <div class="quote">With you, every road feels like home.</div>
+    </div>
+
+    <div class="slide">
+        <img src="photo6.jpg">
+        <div class="quote">Adventures are better when I hold your hand.</div>
+    </div>
+
+    <div class="slide">
+        <img src="photo7.jpg">
+        <div class="quote">You are my peace and my chaos at the same time.</div>
+    </div>
+
+    <div class="slide">
+        <img src="photo8.jpg">
+        <div class="quote">Happy Birthday Shivi ❤️ I choose you. Always.</div>
+    </div>
+
+    <div class="slide">
+        <div class="final-message">
+            Happy Birthday Shivi ❤️ <br><br>
+            You are my peace, my adventure, my courage, my emotion. <br><br>
+            From Mussoorie to wherever life takes us next — <br>
+            I want every journey with you. <br><br>
+            To us. Always. ❤️
+        </div>
+
+        <button onclick="showVideos()">Watch Special Messages 🎥</button>
+        <div class="hearts-container"></div>
+    </div>
+
+</div>
+
+<div class="videos-section" id="videosSection">
+    <h2>Messages From Friends & Family ❤️</h2>
+
+    <video controls playsinline><source src="video1.mp4" type="video/mp4"></video>
+    <video controls playsinline><source src="video2.mp4" type="video/mp4"></video>
+    <video controls playsinline><source src="video3.mp4" type="video/mp4"></video>
+    <video controls playsinline><source src="video4.mp4" type="video/mp4"></video>
+    <video controls playsinline><source src="video5.mp4" type="video/mp4"></video>
+    <video controls playsinline><source src="video6.mp4" type="video/mp4"></video>
+
+</div>
+
+<script>
+let currentSlide = 0;
+let heartInterval;
+let slides;
+
+function startStory() {
+    document.getElementById("bgmusic").play();
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("slideshow").style.display = "block";
+    slides = document.querySelectorAll(".slide");
+    showSlide();
+}
+
+function showSlide() {
+    slides.forEach(slide => slide.classList.remove("active"));
+
+    slides[currentSlide].classList.add("active");
+
+    if (currentSlide === slides.length - 1) {
+        startHearts();
+        return;
+    }
+
+    currentSlide++;
+    setTimeout(showSlide, 4500);
+}
+
+function createHeart() {
+    let heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 90 + "vw";
+    heart.style.fontSize = (14 + Math.random() * 16) + "px";
+    document.querySelector(".hearts-container").appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+}
+
+function startHearts() {
+    heartInterval = setInterval(createHeart, 400);
+}
+
+function showVideos() {
+    clearInterval(heartInterval);
+
+    const videoSection = document.getElementById("videosSection");
+    videoSection.style.display = "block";
+
+    setTimeout(() => {
+        const topPosition = videoSection.offsetTop;
+        window.scrollTo({
+            top: topPosition,
+            behavior: "smooth"
+        });
+    }, 100);
+}
+</script>
+
+</body>
+</html>

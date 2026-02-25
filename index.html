@@ -267,8 +267,15 @@ function startHearts() {
 
 function showVideos() {
     clearInterval(heartInterval);
-    document.getElementById("videosSection").style.display = "block";
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    const videoSection = document.getElementById("videosSection");
+    videoSection.style.display = "block";
+
+    videoSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
 }
 </script>
 

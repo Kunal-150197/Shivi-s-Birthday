@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Happy Birthday Shivi ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #ff758c, #ff7eb3);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
+        }
+
+        .container {
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-top: 50px;
+        }
+
+        .btn {
+            background: white;
+            color: #ff4e8d;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .slideshow-container {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .slide {
+            display: none;
+        }
+
+        .slide img {
+            width: 90%;
+            max-width: 450px;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.4);
+        }
+
+        .quote {
+            margin-top: 20px;
+            font-size: 18px;
+            padding: 0 20px;
+        }
+
+        .videos-section {
+            display: none;
+            margin-top: 40px;
+        }
+
+        iframe, video {
+            margin-top: 20px;
+            border-radius: 15px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Happy Birthday Shivi ❤️</h1>
+    <p>Passion. Courage. Adventurous. Emotional.</p>
+    <p>Our first couple trip to Mussoorie & Landour 🌄</p>
+
+    <button class="btn" onclick="startStory()">Start Our Story ✨</button>
+
+    <div class="slideshow-container" id="slideshow">
+
+        <div class="slide"><img src="photo1.JPG"></div>
+        <div class="slide"><img src="photo2.jpg"></div>
+        <div class="slide"><img src="photo3.jpg"></div>
+        <div class="slide"><img src="photo4.jpg"></div>
+        <div class="slide"><img src="photo5.jpg"></div>
+        <div class="slide"><img src="photo6.jpg"></div>
+        <div class="slide"><img src="photo7.jpg"></div>
+        <div class="slide"><img src="photo8.JPG"></div>
+
+        <div class="quote" id="finalQuote" style="display:none;">
+            “From Mussoorie skies to every tomorrow —  
+            I choose you. Every single time.” ❤️
+        </div>
+
+        <button class="btn" id="videoBtn" style="display:none;" onclick="showVideos()">
+            Watch Special Messages 🎥
+        </button>
+
+    </div>
+
+    <div class="videos-section" id="videosSection">
+        <h2>Messages From Friends & Family ❤️</h2>
+
+        <div id="videoContainer"></div>
+
+        <button class="btn" onclick="loadVideo('video1.MP4')">Play Video 1 🎥</button>
+        <button class="btn" onclick="loadVideo('video2.MP4')">Play Video 2 🎥</button>
+        <button class="btn" onclick="loadVideo('video3.MP4')">Play Video 3 🎥</button>
+        <button class="btn" onclick="loadVideo('video4.MP4')">Play Video 4 🎥</button>
+        <button class="btn" onclick="loadVideo('video5.MP4')">Play Video 5 🎥</button>
+        <button class="btn" onclick="loadVideo('video6.MP4')">Play Video 6 🎥</button>
+    </div>
+
+</div>
+
+<script>
+
+let slideIndex = 0;
+let slides;
+
+function startStory() {
+    document.getElementById("slideshow").style.display = "block";
+    slides = document.getElementsByClassName("slide");
+    showSlides();
+}
+
+function showSlides() {
+
+    if (slideIndex < slides.length) {
+        slides[slideIndex].style.display = "block";
+        setTimeout(() => {
+            slides[slideIndex].style.display = "none";
+            slideIndex++;
+            showSlides();
+        }, 2500);
+    } else {
+        document.getElementById("finalQuote").style.display = "block";
+        document.getElementById("videoBtn").style.display = "inline-block";
+    }
+}
+
+function showVideos() {
+    document.getElementById("videosSection").style.display = "block";
+    window.scrollTo({
+        top: document.getElementById("videosSection").offsetTop,
+        behavior: "smooth"
+    });
+}
+
+function loadVideo(filename) {
+    const container = document.getElementById("videoContainer");
+
+    container.innerHTML = `
+        <video controls autoplay playsinline width="90%">
+            <source src="${filename}" type="video/mp4">
+        </video>
+    `;
+}
+
+</script>
+
+</body>
+</html>
